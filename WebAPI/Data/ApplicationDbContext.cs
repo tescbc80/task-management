@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace TaskManagement.WebAPI.Data
 {
-    public class TaskManagementDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext(DbContextOptions options): base(options)
+        {
+            
+        }
+
         public DbSet<TodoTask> TodoTasks { get; set; }
- 
     }
 
     public class TodoTask
