@@ -13,7 +13,7 @@ namespace CBC.TaskManagement.WebApi.Data
         {
         }
 
-        public async Task<TodoTask> GetTaskByIdAsync(int taskId, CancellationToken cancellationToken)
+        public async Task<TodoTask> GetTaskByIdAsync(Guid taskId, CancellationToken cancellationToken)
         {
             return await DBContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == taskId, cancellationToken);
         }

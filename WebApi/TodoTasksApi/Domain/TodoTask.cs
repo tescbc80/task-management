@@ -1,10 +1,11 @@
 ﻿namespace CBC.TaskManagement.WebApi.Domain
-{ 
+{
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class TodoTask
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; }
 
