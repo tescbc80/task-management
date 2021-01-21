@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.WebAPI.Data;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace task_management
 {
@@ -22,6 +23,13 @@ namespace task_management
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configure ASP.NET Core to work with proxy servers and load balancers
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(
                    Configuration.GetConnectionString("TaskManagementDatabase")));
@@ -51,6 +59,9 @@ namespace task_management
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task Management V1");
             });
 
+            // Forwarded Headers Middleware before other middleware to consume forwarded headers information, if applicable.
+            app.UseForwardedHeaders();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,6 +70,7 @@ namespace task_management
             else
             {
                 app.UseExceptionHandler("/Error");
+                
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
