@@ -34,20 +34,16 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Compile Remove="WebApi\Commands\**" />
-    <Compile Remove="WebApi\Infrastructure\**" />
-    <Compile Remove="WebApi\Models\**" />
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="WebApi\Commands\**" />
-    <Content Remove="WebApi\Infrastructure\**" />
-    <Content Remove="WebApi\Models\**" />
     <EmbeddedResource Remove="WebApi\Commands\**" />
-    <EmbeddedResource Remove="WebApi\Infrastructure\**" />
-    <EmbeddedResource Remove="WebApi\Models\**" />
     <None Remove="$(SpaRoot)**" />
     <None Remove="WebApi\Commands\**" />
-    <None Remove="WebApi\Infrastructure\**" />
-    <None Remove="WebApi\Models\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="WebApi\TodoTasksApi\Service\Services\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

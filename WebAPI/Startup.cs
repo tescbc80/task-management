@@ -19,6 +19,10 @@ using TaskManagement.WebApi.Service.Query;
 using CBC.TaskManagement.WebApi.Domain;
 using System.Collections.Generic;
 using TaskManagement.WebApi.Service.Command;
+using FluentValidation;
+using CBC.TaskManagement.WebApi.Models;
+using TaskManagement.WebApi.Validators;
+using FluentValidation.AspNetCore;
 
 namespace CBC.TaskManagement.WebApi
 {
@@ -43,7 +47,7 @@ namespace CBC.TaskManagement.WebApi
 
             services.AddDbContext<TodoTaskContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TaskManagementDatabase")));
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation();
             
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -93,14 +97,17 @@ namespace CBC.TaskManagement.WebApi
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ITodoTaskRepository, TodoTaskRepository>();
 
-            // Todo: added validation
-            //services.AddTransient<IValidator<TodoTaskModel>, TodoTaskValidator>();
+            // Apply Business Validation
+            services.AddTransient<IValidator<TodoTaskModel>, TodoTaskModelValidator>();
 
             // Register All Queries
             services.AddTransient<IRequestHandler<GetTodoTaskQuery, List<TodoTask>>, GetTodoTaskQueryHandler>();
+            services.AddTransient<IRequestHandler<GetTodoTaskByIdQuery, TodoTask>, GetTodoTaskByIdQueryHandler>();
 
             // Register All Commands
             services.AddTransient<IRequestHandler<CreateTodoTaskCommand, TodoTask>, CreateTodoTaskCommandHandler>();
+            services.AddTransient<IRequestHandler<DeleteTodoTaskCommand>, DeleteTodoTaskCommandHandler>();
+            services.AddTransient<IRequestHandler<SetTaskStatusCommand, TodoTask>, SetTaskStatusCommandHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

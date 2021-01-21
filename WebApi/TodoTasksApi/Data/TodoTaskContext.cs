@@ -15,6 +15,5 @@ namespace CBC.TaskManagement.WebApi.Data
         }
 
         public DbSet<TodoTask> TodoTasks { get; set; }
-        public DbSet<Category> Categories { get; set; }
     }
 }
