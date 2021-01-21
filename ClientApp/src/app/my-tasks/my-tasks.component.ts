@@ -2,10 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  selector: 'app-my-tasks',
+  templateUrl: './my-tasks.component.html'
 })
-export class FetchDataComponent {
+export class MyTasksComponent {
   public todotasks: TodoTask[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
