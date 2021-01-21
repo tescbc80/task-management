@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "task_management": {
+    "CBC.TaskManagement": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "task_management:build"
+            "browserTarget": "CBC.TaskManagement:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "task_management:build:production"
+              "browserTarget": "CBC.TaskManagement:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "task_management:build"
+            "browserTarget": "CBC.TaskManagement:build"
           }
         },
         "test": {
@@ -111,7 +111,7 @@
         }
       }
     },
-    "task_management-e2e": {
+    "CBC.TaskManagement-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -119,7 +119,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "task_management:serve"
+            "devServerTarget": "CBC.TaskManagement:serve"
           }
         },
         "lint": {
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "task_management"
+  "defaultProject": "CBC.TaskManagement"
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TaskManagement.WebAPI.Data
+namespace CBC.TaskManagement.WebApi.Data
 {
     public class ApplicationDbContext : DbContext
     {
