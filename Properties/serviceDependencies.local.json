@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/cbc-taskmanagement-dbserver/databases/CBC.TaskManagement_db",
+      "type": "mssql.azure",
+      "connectionId": "TaskManagementDatabase",
+      "secretStore": "LocalSecretsFile"
+    }
+  }
+}

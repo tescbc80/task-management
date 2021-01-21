@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CBC.TaskManagement.WebApi.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,24 +15,6 @@ namespace CBC.TaskManagement.WebApi.Data
         }
 
         public DbSet<TodoTask> TodoTasks { get; set; }
-    }
-
-    public class TodoTask
-    {
-        public int TodoTaskId { get; set; }
-
-        public string Title { get; set; }
-        public string Description { get; set; }
-
-        public TodoTaskStatus Status { get; } = TodoTaskStatus.New;
-    }
-
-    public enum TodoTaskStatus
-    {
-        New,
-        Todo,
-        InProgress,
-        Done,
-        Closed
+        public DbSet<Category> Categories { get; set; }
     }
 }
