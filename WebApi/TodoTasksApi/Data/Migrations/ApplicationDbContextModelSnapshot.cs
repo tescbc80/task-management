@@ -4,16 +4,14 @@ using CBC.TaskManagement.WebApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace TaskManagement.WebApi.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210121170911_InitDB")]
-    partial class InitDB
+    [DbContext(typeof(TodoTaskContext))]
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

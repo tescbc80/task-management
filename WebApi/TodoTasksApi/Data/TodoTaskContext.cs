@@ -1,4 +1,4 @@
-﻿using CBC.TaskManagement.WebApi.Models;
+﻿using CBC.TaskManagement.WebApi.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CBC.TaskManagement.WebApi.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class TodoTaskContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions options): base(options)
+        public TodoTaskContext(DbContextOptions options): base(options)
         {
             
         }

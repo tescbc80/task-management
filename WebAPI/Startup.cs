@@ -7,6 +7,18 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpOverrides;
 using CBC.TaskManagement.WebApi.Data;
+using AutoMapper;
+using MediatR;
+using System.Reflection;
+using Microsoft.OpenApi.Models;
+using System.IO;
+using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using TaskManagement.WebApi.Service.Query;
+using CBC.TaskManagement.WebApi.Domain;
+using System.Collections.Generic;
+using TaskManagement.WebApi.Service.Command;
 
 namespace CBC.TaskManagement.WebApi
 {
@@ -29,9 +41,7 @@ namespace CBC.TaskManagement.WebApi
                     ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("TaskManagementDatabase")));
+            services.AddDbContext<TodoTaskContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TaskManagementDatabase")));
 
             services.AddControllersWithViews();
             
@@ -42,7 +52,55 @@ namespace CBC.TaskManagement.WebApi
             });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen();
+            services.AddSwaggerGen( s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "TodoTask Api",
+                    Description = "A simple API to manage todo / task",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Yaser Shadmehr",
+                        Email = "y.shadmehr@gmail.com",
+                    }
+                });
+            });
+
+
+            // Handling Invalud Model State
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = actionContext =>
+                {
+                    var actionExecutingContext =
+                        actionContext as ActionExecutingContext;
+
+                    if (actionContext.ModelState.ErrorCount > 0
+                        && actionExecutingContext?.ActionArguments.Count == actionContext.ActionDescriptor.Parameters.Count)
+                    {
+                        return new UnprocessableEntityObjectResult(actionContext.ModelState);
+                    }
+
+                    return new BadRequestObjectResult(actionContext.ModelState);
+                };
+            });
+
+            // Register automapper to map POCO (DTO <--> Model)
+            services.AddAutoMapper(typeof(Startup));
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<ITodoTaskRepository, TodoTaskRepository>();
+
+            // Todo: added validation
+            //services.AddTransient<IValidator<TodoTaskModel>, TodoTaskValidator>();
+
+            // Register All Queries
+            services.AddTransient<IRequestHandler<GetTodoTaskQuery, List<TodoTask>>, GetTodoTaskQueryHandler>();
+
+            // Register All Commands
+            services.AddTransient<IRequestHandler<CreateTodoTaskCommand, TodoTask>, CreateTodoTaskCommandHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +113,7 @@ namespace CBC.TaskManagement.WebApi
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task Management V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task Management API V1");
             });
 
             // Forwarded Headers Middleware before other middleware to consume forwarded headers information, if applicable.

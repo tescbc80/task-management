@@ -15,8 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.0" />
     <PackageReference Include="Azure.Identity" Version="1.2.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.4.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
@@ -29,8 +33,20 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="WebApi\Commands\**" />
+    <Compile Remove="WebApi\Infrastructure\**" />
+    <Compile Remove="WebApi\Models\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="WebApi\Commands\**" />
+    <Content Remove="WebApi\Infrastructure\**" />
+    <Content Remove="WebApi\Models\**" />
+    <EmbeddedResource Remove="WebApi\Commands\**" />
+    <EmbeddedResource Remove="WebApi\Infrastructure\**" />
+    <EmbeddedResource Remove="WebApi\Models\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="WebApi\Commands\**" />
+    <None Remove="WebApi\Infrastructure\**" />
+    <None Remove="WebApi\Models\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
