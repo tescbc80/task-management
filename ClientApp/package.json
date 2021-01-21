@@ -1,11 +1,11 @@
 {
-  "name": "task_management",
+  "name": "cbc.taskmanagement",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng run task_management:server:dev",
+    "build:ssr": "ng run CBC.TaskManagement:server:dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

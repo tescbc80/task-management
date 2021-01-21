@@ -1,6 +1,6 @@
 using System;
 
-namespace task_management
+namespace CBC.TaskManagement
 {
     public class WeatherForecast
     {
