@@ -14,7 +14,7 @@
     <tr *ngFor="let task of todotasks">
       <td>{{ task.title }}</td>
       <td>{{ task.description }}</td>
-      <td>{{ task.status }}</td>
+      <td>{{ getStatusName(task) }}</td>
     </tr>
   </tbody>
 </table>
