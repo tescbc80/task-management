@@ -5,16 +5,22 @@
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="todotasks">
   <thead>
     <tr>
+      <th>#</th>
       <th>Title</th>
       <th>Description</th>
       <th>Status</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let task of todotasks">
+    <tr *ngFor="let task of todotasks;  let i = index">
+      <td>{{ i + 1 }}</td>
       <td>{{ task.title }}</td>
       <td>{{ task.description }}</td>
       <td>{{ getStatusName(task) }}</td>
+      <td>
+        <button (click)='removeTask(task, i)'> X</button>
+      </td>
     </tr>
   </tbody>
 </table>
