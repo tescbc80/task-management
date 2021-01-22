@@ -108,6 +108,7 @@ namespace CBC.TaskManagement.WebApi
 
             // Register All Commands
             services.AddTransient<IRequestHandler<CreateTodoTaskCommand, TodoTask>, CreateTodoTaskCommandHandler>();
+            services.AddTransient<IRequestHandler<UpdateTodoTaskCommand, TodoTask>, UpdateTodoTaskCommandHandler>();
             services.AddTransient<IRequestHandler<DeleteTodoTaskCommand>, DeleteTodoTaskCommandHandler>();
             services.AddTransient<IRequestHandler<SetTaskStatusCommand, TodoTask>, SetTaskStatusCommandHandler>();
         }
