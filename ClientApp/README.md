@@ -7,7 +7,7 @@ This a simple TODO / Task Management SPA - Angular with the Net Core (3.x) which
 
 Run `dotnet ef database update` to update your database. Then, run  `dotnet restore` & `dotnet run`. The app will automatically reload if you change any of the source files.
 
-# Development only client side
+### Development only client side
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
