@@ -1,16 +1,16 @@
-﻿using AutoMapper;
-using CBC.TaskManagement.WebApi.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using CBC.TaskManagement.WebApi.Models;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Domain.SeedWork;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Service.Command;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Service.Query;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TaskManagement.WebApi.Service.Command;
-using TaskManagement.WebApi.Service.Query;
 
 namespace CBC.TaskManagement.WebApi.Controllers
 {
@@ -22,6 +22,7 @@ namespace CBC.TaskManagement.WebApi.Controllers
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
+        // ReSharper disable once NotAccessedField.Local
         private readonly ILogger<TodoTaskController> _logger;
 
         public TodoTaskController(IMapper mapper, IMediator mediator, ILogger<TodoTaskController> logger)
@@ -83,6 +84,7 @@ namespace CBC.TaskManagement.WebApi.Controllers
         ///     Action to update status of the task.
         /// </summary>
         /// <param name="id">The id of the task.</param>
+        /// <param name="status">The status of the task.</param>
         /// <returns>Returns the updated task</returns>
         /// <response code="200">Returned if the task was updated.</response>
         /// <response code="400">Returned if the task could not be found with the provided id</response>
@@ -145,7 +147,7 @@ namespace CBC.TaskManagement.WebApi.Controllers
                     Task = _mapper.Map<TodoTask>(task)
                 });
 
-                return this.Ok();
+                return Ok();
             }
             catch (Exception ex)
             {

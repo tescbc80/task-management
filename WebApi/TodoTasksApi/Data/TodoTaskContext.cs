@@ -1,11 +1,7 @@
-﻿using CBC.TaskManagement.WebApi.Domain;
+﻿using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CBC.TaskManagement.WebApi.Data
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Data
 {
     public class TodoTaskContext : DbContext
     {

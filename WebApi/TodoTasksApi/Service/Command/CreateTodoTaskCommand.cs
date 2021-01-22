@@ -1,9 +1,8 @@
-﻿
-namespace TaskManagement.WebApi.Service.Command
-{
-    using CBC.TaskManagement.WebApi.Domain;
-    using MediatR;
+﻿using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
+using MediatR;
 
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Service.Command
+{
     public class CreateTodoTaskCommand : IRequest<TodoTask>
     {
         public TodoTask Task { get; set; }

@@ -1,7 +1,7 @@
 ﻿using CBC.TaskManagement.WebApi.Models;
 using FluentValidation;
 
-namespace TaskManagement.WebApi.Validators
+namespace CBC.TaskManagement.WebApi.Validators
 {
     public class TodoTaskModelValidator : AbstractValidator<TodoTaskModel>
     {

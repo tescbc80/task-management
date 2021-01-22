@@ -6,22 +6,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpOverrides;
-using CBC.TaskManagement.WebApi.Data;
 using AutoMapper;
 using MediatR;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
-using System.IO;
-using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TaskManagement.WebApi.Service.Query;
-using CBC.TaskManagement.WebApi.Domain;
 using System.Collections.Generic;
-using TaskManagement.WebApi.Service.Command;
 using FluentValidation;
 using CBC.TaskManagement.WebApi.Models;
-using TaskManagement.WebApi.Validators;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Data;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Data.Repository;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Service.Command;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Service.Query;
+using CBC.TaskManagement.WebApi.Validators;
 using FluentValidation.AspNetCore;
 
 namespace CBC.TaskManagement.WebApi
@@ -35,7 +34,10 @@ namespace CBC.TaskManagement.WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             // Configure ASP.NET Core to work with proxy servers and load balancers

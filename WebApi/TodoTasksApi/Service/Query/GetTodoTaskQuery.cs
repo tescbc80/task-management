@@ -1,10 +1,9 @@
-﻿namespace TaskManagement.WebApi.Service.Query
+﻿using System.Collections.Generic;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
+using MediatR;
+
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Service.Query
 {
-    using CBC.TaskManagement.WebApi.Domain;
-    using MediatR;
-    using System.Collections.Generic;
-
-
     public class GetTodoTaskQuery : IRequest<List<TodoTask>>
     {
     }

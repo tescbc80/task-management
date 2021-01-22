@@ -10,7 +10,7 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
-    <RootNamespace>TaskManagement</RootNamespace>
+    <RootNamespace>CBC.TaskManagement</RootNamespace>
     <UserSecretsId>7a026bf1-2672-408f-8865-06e0a0a392d1</UserSecretsId>
   </PropertyGroup>
 

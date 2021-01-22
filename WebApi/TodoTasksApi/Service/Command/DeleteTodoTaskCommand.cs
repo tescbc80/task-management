@@ -1,7 +1,7 @@
-﻿using CBC.TaskManagement.WebApi.Domain;
+﻿using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
 using MediatR;
 
-namespace TaskManagement.WebApi.Service.Command
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Service.Command
 {
     public class DeleteTodoTaskCommand : IRequest
     {

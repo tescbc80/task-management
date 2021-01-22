@@ -1,12 +1,15 @@
-﻿using CBC.TaskManagement.WebApi.Domain;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
+using Microsoft.EntityFrameworkCore;
 
-namespace CBC.TaskManagement.WebApi.Data
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Data.Repository
 {
+    /// <summary>
+    /// Represents a object for CRUD action for <see cref="TodoTask"/>.
+    /// </summary>
     public class TodoTaskRepository : Repository<TodoTask>, ITodoTaskRepository
     {
         public TodoTaskRepository(TodoTaskContext dbContext) : base(dbContext)
@@ -15,14 +18,14 @@ namespace CBC.TaskManagement.WebApi.Data
 
         public async Task<TodoTask> GetTaskByIdAsync(Guid taskId, CancellationToken cancellationToken)
         {
-            return await DBContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == taskId, cancellationToken);
+            return await DbContext.TodoTasks.FirstOrDefaultAsync(x => x.Id == taskId, cancellationToken);
         }
 
         public async Task<List<TodoTask>> GetTasksAsync(CancellationToken cancellationToken)
         {
             try
             {
-                var result = await this.DBContext.TodoTasks.ToListAsync(cancellationToken);
+                var result = await this.DbContext.TodoTasks.ToListAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)

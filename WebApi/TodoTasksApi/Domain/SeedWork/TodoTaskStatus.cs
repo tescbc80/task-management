@@ -1,4 +1,4 @@
-﻿namespace CBC.TaskManagement.WebApi
+﻿namespace CBC.TaskManagement.WebApi.TodoTasksApi.Domain.SeedWork
 {
     public enum TodoTaskStatus
     {

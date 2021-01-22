@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TaskManagement.WebApi.TodoTasksApi.Data.Migrations
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Data.Migrations
 {
     public partial class InitDB : Migration
     {

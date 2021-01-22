@@ -1,8 +1,8 @@
 ﻿using System;
-using CBC.TaskManagement.WebApi.Domain;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Domain;
 using MediatR;
 
-namespace TaskManagement.WebApi.Service.Query
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Service.Query
 {
    public class GetTodoTaskByIdQuery : IRequest<TodoTask>
     {

@@ -1,8 +1,9 @@
-﻿namespace CBC.TaskManagement.WebApi.Domain
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using CBC.TaskManagement.WebApi.TodoTasksApi.Domain.SeedWork;
 
+namespace CBC.TaskManagement.WebApi.TodoTasksApi.Domain
+{
     public class TodoTask
     {
         public Guid Id { get; set; }
@@ -16,7 +17,6 @@
 
         public TodoTaskStatus Status { get; set; }
 
-        public bool IsComplete { get { return this.Status == TodoTaskStatus.Done; } }
-
+        public bool IsComplete => Status == TodoTaskStatus.Done;
     }
 }
