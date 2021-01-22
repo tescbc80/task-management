@@ -1,7 +1,9 @@
 <h1 id="tableLabel">My To-do/Task List</h1>
 
 <p *ngIf="!todotasks"><em>Loading...</em></p>
-
+<div>
+  <button class="btn-add btn-primary" (click)="addTask()">+ Add new to-do / task</button>
+</div>
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="todotasks">
   <thead>
     <tr>
@@ -10,14 +12,22 @@
       <th>Description</th>
       <th>Status</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let task of todotasks;  let i = index">
       <td>{{ i + 1 }}</td>
-      <td>{{ task.title }}</td>
-      <td>{{ task.description }}</td>
+      <td>
+        <input [(ngModel)]="task.title" type="text">
+      </td>
+      <td>
+        <input [(ngModel)]="task.description" type="text">
+      </td>
       <td>{{ getStatusName(task) }}</td>
+      <td>
+        <button (click)='updateTask(task, i)'> Save</button>
+      </td>
       <td>
         <button (click)='removeTask(task, i)'> X</button>
       </td>
